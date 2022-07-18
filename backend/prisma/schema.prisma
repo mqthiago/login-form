@@ -1,0 +1,18 @@
+generator client {
+  provider        = "prisma-client-js"
+  binaryTargets   = ["native"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("PG_CON")
+}
+
+model User {
+  /// ID
+  id              Int       @id @default(autoincrement())
+  email String @unique
+  password String
+  name String
+}
+//githubfresco
