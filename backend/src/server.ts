@@ -2,6 +2,8 @@ import express from 'express';
 import { PrismaClient, User } from '@prisma/client';
 import cors from 'cors';
 import { compare, hash } from 'bcryptjs';
+import { sign } from 'jsonwebtoken';
+import authMiddleware from './authMiddleware';
 
 const prisma = new PrismaClient();
 const server = express();
@@ -29,7 +31,15 @@ server.post('/login', async (request, response) => {
   if (!validPassword) {
     return response.status(401).json({ message: 'Wrong email or password.' });
   }
-  return response.json({ token: '' });
+  const token = sign({ userId: user.id }, process.env.ACCESS_TOKEN_SECRET!, {
+    expiresIn: '7d',
+  });
+  return response.json({ token });
+});
+server.get('/user/profile', authMiddleware, async (request, response) => {
+  const { userId: id } = request;
+  const user = await prisma.user.findUnique({ where: { id } });
+  return response.json(user);
 });
 
 // server.delete('/product/:id', async (request, response) => {

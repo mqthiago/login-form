@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "yarn nodemon --exec ts-node -- ./src/server.ts",
+    "dev": "yarn nodemon --exec ts-node --files ./src/server.ts",
     "migrate": "yarn prisma migrate dev",
     "generate": "yarn prisma generate"
   },
@@ -12,6 +12,7 @@
     "@types/bcryptjs": "^2.4.2",
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
+    "@types/jsonwebtoken": "^8.5.8",
     "@typescript-eslint/eslint-plugin": "^5.30.6",
     "@typescript-eslint/parser": "^5.30.6",
     "eslint": "^7.32.0 || ^8.2.0",
@@ -27,6 +28,7 @@
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
-    "express": "^4.18.1"
+    "express": "^4.18.1",
+    "jsonwebtoken": "^8.5.1"
   }
 }
