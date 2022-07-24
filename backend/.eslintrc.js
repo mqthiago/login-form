@@ -1,4 +1,11 @@
 module.exports = {
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.ts', '.d.ts'],
+      },
+    },
+  },
   env: {
     es2021: true,
     node: true,
@@ -15,5 +22,14 @@ module.exports = {
     '@typescript-eslint',
   ],
   rules: {
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        js: 'never',
+        ts: 'never',
+        'd.ts': 'never',
+      },
+    ],
   },
 };

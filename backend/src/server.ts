@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import express from 'express';
 import { PrismaClient, User } from '@prisma/client';
 import cors from 'cors';
