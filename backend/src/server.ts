@@ -35,7 +35,7 @@ server.post('/login', async (request, response) => {
   const token = sign({ userId: user.id }, process.env.ACCESS_TOKEN_SECRET!, {
     expiresIn: '7d',
   });
-  return response.json({ token });
+  return response.json({ token, user });
 });
 server.get('/user/profile', authMiddleware, async (request, response) => {
   const { userId: id } = request;
